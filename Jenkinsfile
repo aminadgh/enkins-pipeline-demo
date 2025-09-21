@@ -1,6 +1,6 @@
 pipeline {
   agent any
-  tools { maven 'Maven' } // nom tel que configuré en Global Tool Config
+  tools { maven 'Maven 3.9.0' } // nom tel que configuré en Global Tool Config
   stages {
     stage('Checkout') {
       steps {
