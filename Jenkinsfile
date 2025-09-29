@@ -1,6 +1,9 @@
 pipeline {
   agent any
-  tools { maven 'Maven 3.9.0' } // nom tel que configuré en Global Tool Config
+  tools { 
+    maven 'Maven 3.9.0' 
+  }
+  
   stages {
     stage('Checkout') {
       steps {
@@ -10,12 +13,14 @@ pipeline {
         )
       }
     }
+    
     stage('Build') {
       steps {
         echo 'Construction...'
         sh 'mvn -B clean package'
       }
     }
+    
     stage('Test') {
       steps {
         echo 'Tests en cours...'
@@ -23,20 +28,26 @@ pipeline {
         junit '**/target/surefire-reports/*.xml'
       }
     }
+    
     stage('Archive') {
       steps {
         archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
       }
     }
+    
     stage('Deploy') {
       steps {
         echo 'Déploiement... (simulé)'
-        // ici tu peux scp / kopier vers serveur, ou docker push, etc.
       }
     }
   }
+  
   post {
-    success { echo 'Build terminé : SUCCESS' }
-    failure { echo 'Build échoué : FAILURE' }
+    success { 
+      echo 'Build terminé : SUCCESS' 
+    }
+    failure { 
+      echo 'Build échoué : FAILURE' 
+    }
   }
 }
