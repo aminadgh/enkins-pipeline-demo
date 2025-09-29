@@ -6,7 +6,7 @@ pipeline {
       steps {
         checkout([$class: 'GitSCM',
           branches: [[name: '*/main']],
-          userRemoteConfigs: [[url: 'https://github.com/ton-compte/ton-repo.git', credentialsId: 'github-creds']]]
+          userRemoteConfigs: [[url: 'https://github.com/aminadgh/enkins-pipeline-demo.git', credentialsId: 'github-creds']]]
         )
       }
     }
